@@ -1,0 +1,51 @@
+{
+  "id": "2369869",
+  "name": "2021寒假实训1",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "3328140",
+      "name": "收藏夹",
+      "font_class": "shoucangjia",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "8989922",
+      "name": "个人中心",
+      "font_class": "ren",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "9807456",
+      "name": "推荐",
+      "font_class": "tuijian1",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "11729547",
+      "name": "收 藏",
+      "font_class": "shoucang",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "18196863",
+      "name": "创作",
+      "font_class": "chuangzuo",
+      "unicode": "e6bd",
+      "unicode_decimal": 59069
+    },
+    {
+      "icon_id": "19149324",
+      "name": "点赞",
+      "font_class": "zanpress",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    }
+  ]
+}
