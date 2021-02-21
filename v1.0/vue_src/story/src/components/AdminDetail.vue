@@ -2,13 +2,19 @@
 <div class="total-wrp">
 
     <div class="total" v-if="story_exist">
-            
+            <!-- <div class="head">
+                故事详情
+            </div> -->
             <div class="head">
                 故事详情
             </div>
-
+            
             <div class="story-title">
                 {{ story_detail[0].title }}
+            </div>
+
+            <div class="date-wrp">
+                      创作时间: {{story_detail[0].date || "2007-07-06 12:31:21"}}
             </div>
 
             <div class="story-begin">
@@ -23,7 +29,11 @@
             </div>
 
 
-            <div class="un-editable">
+            <div class="editable bottom-tip" v-if="editable">
+              ⭐故事还未完成
+            </div>
+
+            <div class="un-editable bottom-tip" v-else>
                 故事完成啦
             </div>
 
@@ -31,26 +41,6 @@
                 删除该故事
             </div>
 
-             <div class="echo-bar">
-                <span class="star recom-block-info echo-block" v-if="has_like" @click="un_like()">
-                            <img src="../assets/has-like.png" alt="" class="echo-logo">
-                            {{story_detail[0].like}}
-                        </span>
-
-                        <span class="like recom-block-info echo-block" v-else @click="like()">
-                             <img src="../assets/zan.png" alt="" class="echo-logo">
-                            {{story_detail[0].like}}
-                            </span>
-                        
-                        <span class="like recom-block-info echo-block" v-if="has_star" @click="un_star()">
-                             <img src="../assets/has-star.png" alt="" class="echo-logo">
-                            {{story_detail[0].star}}
-                        </span>
-                        <span class="star recom-block-info echo-block" v-else @click="star()">
-                             <img src="../assets/coll.png" alt="" class="echo-logo">
-                            {{story_detail[0].star}}
-                        </span>
-            </div>
     </div>
 
            
@@ -87,8 +77,9 @@ export default {
            
             story_exist: true,
             story_detail: [{title:"加载中"}],
-
             begin_content: "",
+
+          
 
             /** 此段故事的信息 */
             id: this.$route.params.id,
@@ -96,7 +87,7 @@ export default {
             /** 用来确认是否故事段数已满  */
             editable: false,
 
-             has_like: this.store_util.get_local("has_like")[this.$route.params.id],
+            has_like: this.store_util.get_local("has_like")[this.$route.params.id],
             has_star: this.store_util.get_local("has_star")[this.$route.params.id]
         }
     },
@@ -124,14 +115,14 @@ export default {
                             this.story_exist = false
                             console.log(404)
                         }
-                    } 
+                    }
             )
         },
 
-        delete_story() {
-            if(window.confirm("你确定要删除吗")) {
-                api.deleteStory_sync(this.id)
-                this.$router.replace("/Admin")
+        delete_star() {
+            if(window.confirm("你确定要取消收藏吗")) {
+                api.un_star(this.id)
+                this.$router.go(-1)
             } 
         },
 
@@ -158,13 +149,24 @@ export default {
             this.has_like = false
             this.story_detail[0].like--
         },
+        check_detail(id) {
+            this.$router.push(`MainDetail/${id}`)
+        },
+
+        delete_story() {
+            if(window.confirm("你确定要删除吗")) {
+                api.deleteStory_sync(this.id)
+                this.$router.replace("/Admin")
+            } 
+        },
     }
 }
 </script>
 
 
 <style scoped>
-     /* 惯用色 */
+
+    /* 惯用色 */
     /* rgb(9, 155, 123) */
 
     .total-wrp {
@@ -339,28 +341,9 @@ export default {
     }
 
 
-    
-
-    /** 删除故事按钮 */
-    .delete-story {
-
-
-         /** 调的不那么明显 */
-        font-size: 16px;
-        opacity: .7;
-
-         border-bottom: solid 1px rgb(130, 224, 217);
-         color: rgb(119, 221, 212);
-
-         text-align: center;
-         padding: .5em 1em;
-
-         margin: 1em 1.5em;
-         margin-top: 2em;
-
-         white-space: nowrap;
-
+    /** 底部提示语 */
+     .bottom-tip {
          margin-bottom: 6em !important;
-    }
+     }
 
 </style>

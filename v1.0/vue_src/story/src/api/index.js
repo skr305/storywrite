@@ -257,14 +257,16 @@ api.like = (id) => {
         has_like[username] = {}
     }
 
-    if(!has_like[username][id]) {
 
         has_like[username][id] = true
+        store_util.store_local("has_like", has_like)
         return axios_gen({url: "/article/like", params: {id}, method: "post"})
         .then((res) => {
             return res.data
         })
-    }
+
+        
+    
 }
 
 
@@ -283,11 +285,11 @@ api.un_like = (id) => {
         has_like[username] = {}
     }
 
-    if(has_like[username][id]) {
-        axios_gen({url: "/user/delete/like", params: {id: id}, method: "post"})
+        axios_gen({url: "/article/delete/like", params: {id: id}, method: "post"})
         .then(res => console.log(res))
         has_like[username][id] = false
-    }
+        store_util.store_local("has_like", has_like)
+
 }
 
 
@@ -303,14 +305,13 @@ api.star = (id) => {
         has_star[username] = {}
     }
 
-    if(!has_star[username][id]) {
 
         has_star[username][id] = true
+        store_util.store_local("has_star", has_star)
         return axios_gen({url: "/article/star", params: {id}, method: "post"})
         .then((res) => {
             return res.data
         })
-    }
 
 }
 
@@ -328,11 +329,11 @@ api.un_star = (id) => {
         has_star[username] = {}
     }
 
-    if(has_star[username][id]) {
+        has_star[username][id] = false
+        store_util.store_local("has_star", has_star)
         axios_gen({url: "/user/delete/favorites", params: {id: id}, method: "post"})
         .then(res => console.log(res))
-        has_star[username][id] = false
-    }
+
 }
 
 

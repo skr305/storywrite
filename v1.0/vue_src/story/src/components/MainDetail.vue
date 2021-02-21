@@ -94,8 +94,9 @@ export default {
            
             story_exist: true,
             story_detail: [{title:"加载中"}],
-
             begin_content: "",
+
+          
 
             /** 此段故事的信息 */
             id: this.$route.params.id,
@@ -123,6 +124,9 @@ export default {
                             this.story_detail = res.data
                             /** 加载故事的开头 */
                             this.begin_content = this.story_content[res.data[0].content_id] 
+                            
+                            this.has_like =  this.store_util.get_local("has_like")[this.store_util.get_session("user").username][this.$route.params.id] || false
+                            this.has_star =  this.store_util.get_local("has_star")[this.store_util.get_session("user").username][this.$route.params.id] || false
                         
                         } else if(res.code == 601) {
                             window.alert("登录状态已过期 请重新登录")

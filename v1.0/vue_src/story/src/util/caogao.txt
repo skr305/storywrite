@@ -1,0 +1,11 @@
+delete_story() {
+            if(window.confirm("你确定要删除吗")) {
+                api.deleteStory_sync(this.id)
+                this.$router.replace("/Admin")
+            } 
+        },
+
+
+         <div class="delete-story" @click="delete_story()">
+                删除该故事
+            </div>

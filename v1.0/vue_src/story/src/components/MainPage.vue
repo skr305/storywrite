@@ -160,7 +160,11 @@ export default {
                 }
             }
         )
-        
+
+        this.has_like =  this.store_util.get_local("has_like")[this.store_util.get_session("user").username] || {}
+        this.has_star =  this.store_util.get_local("has_star")[this.store_util.get_session("user").username] || {}
+
+        console.log("233",this.has_star["10001"])
 
         console.log("destory_count in memory:", !localStorage.getItem("destroy_count"))
         console.log("destory_count is:", store_util.get_local("destroy_count") || 0)
@@ -244,6 +248,7 @@ export default {
         },
 
         like(ele) {
+            
             api.like(ele.id)
             this.has_like[ele.id] = true
             console.log(this.has_like[ele.id])

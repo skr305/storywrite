@@ -4,13 +4,12 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store_util from './util/store_obj'
-import testApi from './test/test1'
+
+import begin_content from './util/begin'
 
 Vue.config.productionTip = false
 Vue.prototype.store_util = store_util
-Vue.prototype.story_content = [
-  "1.故事开头", "2.故事开头"
-]
+Vue.prototype.story_content = begin_content
 
 /** 初始化本地数据存储 */
 /** 本地数据用来模拟数据库的存储 */
@@ -61,7 +60,7 @@ if(!localStorage.getItem("delete_list")) {
   store_util.store_local("delete_list", {})
 }
 
-testApi()
+
 
 /* eslint-disable no-new */
 new Vue({

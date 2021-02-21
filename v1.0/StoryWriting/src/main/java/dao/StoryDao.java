@@ -228,8 +228,11 @@ public class StoryDao {
         ResultSet resultSet = null;
 
         try {
+            /** 故事的开头序号 */
+            int content_id = random.nextInt(5);
+
             preparedStatement = connection.prepareStatement(sql1);
-            preparedStatement.setInt(1, random.nextInt(1));
+            preparedStatement.setInt(1, content_id);
             preparedStatement.setString(2, storyHead.getDate());
             preparedStatement.setInt(3, 0);
             preparedStatement.setInt(4, 0);
@@ -250,8 +253,8 @@ public class StoryDao {
             preparedStatement.execute();
 
             HashMap<String, Object> hashMap = new HashMap<>();
-            hashMap.put("type", random.nextInt(6));
-            hashMap.put("content", random.nextInt(1));
+            hashMap.put("type", random.nextInt(5));
+            hashMap.put("content", content_id);
             hashMap.put("id", storyHead.getId());
 
             return hashMap;
