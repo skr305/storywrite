@@ -149,8 +149,8 @@ public class UserController {
         if (TokenTimeOutUtil.isTimeOut(1, token))
             return new Result(601, "token无效或不存在,请重新登录", null);
         else {
-            boolean flag = userDao.hasName(userDao.selectByToken("username", token));
-            return new Result(0, "success", flag);
+
+            return new Result(0, "success", userDao.hasName(userDao.selectByToken("username", token)));
         }
     }
 

@@ -1,8 +1,8 @@
 import axios from 'axios'
 import store_util from '../util/store_obj'
 import $ from 'jquery'
-// const baseURL = window.location.origin + "/SDUstory/"
-const baseURL = "/api/"
+const baseURL = window.location.origin + "/SDUstory/"
+// const baseURL = "/api/"
 /** 生成一个固定模板的axios请求 */
 
 export default ({url, params, method, isFile=false}) => {

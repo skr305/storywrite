@@ -435,10 +435,10 @@ public class StoryDao {
             String favorites = resultSet.getString("favorites");
             favorites += story.getId();
 
-            preparedStatement = connection.prepareStatement(sql3);
-            preparedStatement.setString(1, favorites);
-            preparedStatement.setString(2, username);
-            preparedStatement.execute();
+//            preparedStatement = connection.prepareStatement(sql3);
+//            preparedStatement.setString(1, favorites);
+//            preparedStatement.setString(2, username);
+//            preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

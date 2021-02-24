@@ -52,12 +52,17 @@ export default {
             let nickName = this.nickName
             api.setNickName(nickName).then(
                 (res) => {
+                    
                     if(res.code == 0) {
                         
                         /** 存入用户信息 */
-                        let user = this.store_util.get_session("user")
+
+
+                        let user = this.store_util.get_session("user") || {}
+                        
                         user["nickname"] = nickName
-                        this.store_util.set_session("user", user)
+                        
+                        this.store_util.store_session("user", user)
                         this.$router.replace("/MainPage")
                          
                     } else if(res.code == 601) {

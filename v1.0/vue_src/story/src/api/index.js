@@ -42,11 +42,11 @@ api.nickname = () => {
     /** 对得到的结果规范化修正 */
     .then(res => {
         console.log(res)
-         let fRes = res.data 
-         fRes.data = {}
-         fRes.data.flag = res.data.data
+        //  let fRes = res.data 
+        //  fRes.data = {}
+        //  fRes.data.flag = res.data.data
          
-         return fRes
+         return res.data
     })
 }
 

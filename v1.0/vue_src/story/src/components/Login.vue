@@ -97,20 +97,22 @@ export default {
                             }
                         ).then(
                             () => {
-
+                                /** 正常登录 */
                                 if(!this.admin) {
                                     api.nickname().then(
                                         (res) => {
                                             this.loading = false
-                                            console.log(res)
-                                            if(res.data.flag) {
+                                            console.log("nickname Res",res)
+                                            if(res.data === true) {
                                                 this.$router.replace("/MainPage")
                                             } else {
                                                 this.$router.replace("/SetNickName")
                                             }
                                         }
                                     )
-                                } else {
+                                } 
+                                /** 管理员登录 */
+                                else {
                                      let username = this.form.username
                                      if(username != "201900301072" && username != "202000300080" ) {
                                          window.alert("您不是管理员")
